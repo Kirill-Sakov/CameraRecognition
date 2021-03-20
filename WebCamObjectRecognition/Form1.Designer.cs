@@ -213,6 +213,7 @@
             this.Name = "Form1";
             this.Text = "Object Recognition";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
