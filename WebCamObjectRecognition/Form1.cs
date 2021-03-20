@@ -30,11 +30,7 @@ namespace WebCamObjectRecognition
         static bool isMessageSend = false;
         private string fileName = String.Empty;
 
-        YoloWrapper yolo = new YoloWrapper(
-            "yolo-weights\\yolov3.cfg", 
-            "yolo-weights\\yolov3.weights", 
-            "yolo-weights\\coco.names"
-            );
+        YoloWrapper yolo;
 
         public Form1()
         {
@@ -51,7 +47,23 @@ namespace WebCamObjectRecognition
                 {
                     camerasStripComboBox.Items.Add(cam.Name);
                 }
-                camerasStripComboBox.SelectedIndex = 0;                
+                camerasStripComboBox.SelectedIndex = 0;
+            }
+
+            try
+            {
+                yolo = new YoloWrapper(
+                    "yolo-weights\\yolov3.cfg",
+                    "yolo-weights\\yolov3.weights",
+                    "yolo-weights\\coco.names"
+                    );
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не найдены библиотеки Yolo. " +
+                    "Пожалуйста проверьте наличие файлов yolov3.cfg, yolov3.weights, coco.names " +
+                    "в каталоге yolo-weights и перезапустите приложение");
+                Environment.Exit(1);
             }
         }
 
@@ -157,7 +169,7 @@ namespace WebCamObjectRecognition
                         #endregion
 
                     }
-                }                
+                }
             }
 
             Bitmap tmpBMP = (Bitmap)eventArgs.Frame.Clone();
@@ -222,7 +234,7 @@ namespace WebCamObjectRecognition
                 videoSource.Start();
         }
 
-        
+
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -243,7 +255,7 @@ namespace WebCamObjectRecognition
             camerasStripComboBox.Enabled = !is_on;
             repeatButton.Enabled = !is_on;
         }
-        
+
         private void modeButton_Click(object sender, EventArgs e)
         {
             isMotionDetectorOn = !isMotionDetectorOn;
@@ -290,7 +302,7 @@ namespace WebCamObjectRecognition
             {
                 MessageBox.Show("Ошибка при импортировании изображения.", "Ошибка!", MessageBoxButtons.OK);
                 return;
-            }            
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -306,7 +318,7 @@ namespace WebCamObjectRecognition
                         else
                         {
 
-                            string[] data = 
+                            string[] data =
                                 (string[])Clipboard.GetData(DataFormats.FileDrop);
 
                             try
@@ -318,7 +330,7 @@ namespace WebCamObjectRecognition
                                 MessageBox.Show("Ошибка при импортировании изображения.", "Ошибка!", MessageBoxButtons.OK);
                                 return;
                             }
-                        }                        
+                        }
                         break;
                     }
 
@@ -331,7 +343,7 @@ namespace WebCamObjectRecognition
                         }
                         catch (Exception)
                         {
-                            
+
                         }
                         break;
                     }
