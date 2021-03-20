@@ -1,0 +1,7 @@
+packages/
+
+coco.names
+yolo3.cfg
+yolov3.weights
+
+/.vs
