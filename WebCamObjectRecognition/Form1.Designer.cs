@@ -139,8 +139,8 @@
             this.alarmButton.Image = ((System.Drawing.Image)(resources.GetObject("alarmButton.Image")));
             this.alarmButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.alarmButton.Name = "alarmButton";
-            this.alarmButton.Size = new System.Drawing.Size(250, 22);
-            this.alarmButton.Text = "Уведомлять о движении с камеры на почту";
+            this.alarmButton.Size = new System.Drawing.Size(199, 22);
+            this.alarmButton.Text = "Уведомлять о движении с камеры";
             this.alarmButton.ToolTipText = "Включить уведомления";
             this.alarmButton.Click += new System.EventHandler(this.alarmButton_Click);
             // 

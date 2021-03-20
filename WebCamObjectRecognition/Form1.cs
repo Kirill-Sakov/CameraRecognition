@@ -200,9 +200,22 @@ namespace WebCamObjectRecognition
             {
                 if (videoSource != null)
                     videoSource.Stop();
-
+                
                 MemoryStream memoryStream = new MemoryStream();
-                pictureCameraBox.Image.Save(memoryStream, ImageFormat.Bmp);
+
+                try
+                {
+                    if (pictureCameraBox.Image != null)
+                        pictureCameraBox.Image.Save(memoryStream, ImageFormat.Bmp);
+                    else
+                        throw new Exception("Отсутствует изображение для распознавания");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Не удалось считать изображение. " + ex.Message, "Ошибка.", MessageBoxButtons.OK);
+                    return;
+                }
+
                 List<YoloItem> items = yolo.Detect(memoryStream.ToArray()).ToList<YoloItem>();
 
                 Bitmap finalImage = new Bitmap(pictureCameraBox.Image);
