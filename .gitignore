@@ -1,6 +1,7 @@
 packages/
 bin/
 obj/
+gif-animation/
 /.vs
 coco.names
 yolov3.cfg
